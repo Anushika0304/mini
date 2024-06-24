@@ -1,0 +1,26 @@
+Create topology sudo mn --wifi --topo linear,3
+mininet-wifi> sta1 iw dev sta1-wlan0 scan | grep ssid
+mininet-wifi> sta1 iw dev sta1-wlan0 link
+mininet-wifi> sta1 iw dev sta1-wlan0 disconnect
+mininet-wifi> sta1 iw dev sta1-wlan0 connect ssid_ap2
+mininet-wifi> dump
+mininet-wifi> xterm sta3
+mininet-wifi> dpctl dump-flows
+dpctl del-flows
+
+
+
+Explanation:
+Topology:
+Creates one AP (ap1), one web server (h1), and three clients (sta1, sta2, sta3).
+Clients are associated with the AP (ap1), and the web server (h1) serves content via HTTP.
+Web Server:
+Configured to serve a basic HTML page (index.html) containing a greeting message.
+Performance Evaluation:
+Testing Scenarios:
+Modify the script to vary client mobility patterns (net.startMobility(), net.stopMobility()) and measure how this affects web server performance.
+Use tools like ping, iperf, or custom scripts to measure latency, throughput, and packet loss.
+Data Collection:
+Capture traffic using tcpdump on relevant interfaces (h1, sta1, sta2, sta3) to analyze communication patterns and identify any performance bottlenecks.
+Conclusion:
+This setup allows you to create a wireless network in Mininet-WiFi, simulate client mobility, and evaluate web server performance under different conditions. Adjust parameters and metrics as needed to match specific performance evaluation criteria and analyze the captured data to draw meaningful conclusions about the network's behavior.
